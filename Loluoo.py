@@ -60,6 +60,8 @@ class Talent_Screen(Screen):
                                         (295, 230), (95, 140), (250, 140),
                                         (55, 50), (175, 50), (295, 50)]
         self.talent_left_buttons = []
+
+        self.choose = [1, 0, 0]
         
         self.button_status = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         widget = Widget(size=Window.size)
@@ -68,12 +70,24 @@ class Talent_Screen(Screen):
             self.talent_left_buttons.append(Button(pos=self.talent_left_buttons_pos[n],
                                                    width=54, height=57,
                                                    background_normal='./Images/Talents/Ferocity/%i.jpg'%n,))
-            self.talent_left_buttons[n].bind(on_press=partial(self.change, 'tbl%i'%n, 'left'))
+            self.talent_left_buttons[n].bind(on_press=partial(self.Change, 'tbl%i'%n, 'left'))
         for n in range(15):
             widget.add_widget(self.talent_left_buttons[n])
-                                                   
+        self.reset_button = Button(pos=(150, 10), width=100, height=30,
+                              background_normal='./Images/Talents/Icons/reset_button.jpg')
+        self.reset_button.bind(on_press=self.Reset)
+        self.arrow_button_next = Button(pos=(360, 300), width=30, height=30,
+                              background_normal='./Images/Talents/Icons/arrow_normal.jpg')
+        widget.add_widget(self.reset_button)
+        widget.add_widget(self.arrow_button_next)
         self.add_widget(widget)
-    def change(self, name, pos, *args):
+    def Reset(self, *args):
+        self.button_status = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        for m in range(15):
+            self.talent_left_buttons[m].background_normal = './Images/Talents/Ferocity/%i.jpg'%m
+        self.arrow_button_next.background_normal = './Images/Talents/Icons/arrow_normal.jpg'
+        self.choose = [1, 0, 0]
+    def Change(self, name, pos, *args):
         valor = None
         if pos == 'left':
             if name == 'tbl0':
@@ -261,6 +275,8 @@ class Talent_Screen(Screen):
                         self.talent_left_buttons[13].background_down = './Images/Talents/Ferocity/13.jpg'
                         self.talent_left_buttons[14].background_normal = './Images/Talents/Ferocity/14.jpg'
                         self.talent_left_buttons[14].background_down = './Images/Talents/Ferocity/14.jpg'
+                        self.arrow_button_next.background_normal = './Images/Talents/Icons/arrow_next.jpg'
+                        self.choose = [0, 1, 0]
                     elif valor == 13:
                         self.button_status[13] = 1
                         self.button_status[12] = 0
@@ -271,6 +287,8 @@ class Talent_Screen(Screen):
                         self.talent_left_buttons[13].background_down = './Images/Talents/Ferocity/52.jpg'
                         self.talent_left_buttons[14].background_normal = './Images/Talents/Ferocity/14.jpg'
                         self.talent_left_buttons[14].background_down = './Images/Talents/Ferocity/14.jpg'
+                        self.arrow_button_next.background_normal = './Images/Talents/Icons/arrow_next.jpg'
+                        self.choose = [0, 1, 0]
                     else:
                         self.button_status[14] = 1
                         self.button_status[12] = 0
@@ -280,8 +298,9 @@ class Talent_Screen(Screen):
                         self.talent_left_buttons[13].background_normal = './Images/Talents/Ferocity/13.jpg'
                         self.talent_left_buttons[13].background_down = './Images/Talents/Ferocity/13.jpg'
                         self.talent_left_buttons[14].background_normal = './Images/Talents/Ferocity/53.jpg'
-                        self.talent_left_buttons[14].background_down = './Images/Talents/Ferocity/53
-                        .jpg'
+                        self.talent_left_buttons[14].background_down = './Images/Talents/Ferocity/53.jpg'
+                        self.arrow_button_next.background_normal = './Images/Talents/Icons/arrow_next.jpg'
+                        self.choose = [0, 1, 0]
                 else:
                     pass
                     
@@ -364,5 +383,6 @@ class Loluoo(App):
 
 if __name__ == '__main__':
     Loluoo().run()
+
 
 
