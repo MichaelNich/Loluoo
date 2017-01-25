@@ -68,71 +68,47 @@ class Talent_Screen(Screen):
             self.talent_left_buttons.append(Button(pos=self.talent_left_buttons_pos[n],
                                                    width=54, height=57,
                                                    background_normal='./Images/Talents/Ferocity/%i.jpg'%n,))
-            self.talent_left_buttons[n].bind(on_press=partial(self.change, 'tbl%i'%n))
+            self.talent_left_buttons[n].bind(on_press=partial(self.change, 'tbl%i'%n, 'left'))
         for n in range(15):
             widget.add_widget(self.talent_left_buttons[n])
                                                    
-        '''             
-        self.t_buttonE1 = Button(pos=(95, 450),
-                           width=54, height=57,
-                           background_normal='./Images/Talents/Ferocity/0.jpg',)
-        self.t_buttonE1.bind(on_press=partial(self.change, 'tbe1'))
-        
-        self.t_buttonE2 = Button(pos=(250, 450),
-                           width=54, height=57,
-                           background_normal='./Images/Talents/Ferocity/1.jpg')
-        self.t_buttonE2.bind(on_press=partial(self.change, 'tbe2'))
-
-        self.t_buttonE3 = Button(pos=(55, 360), width=54, height=57,
-                                 background_normal='./Images/Talents/Ferocity/2.jpg')
-        self.t_buttonE3.bind(on_press=partial(self.change, 'tbe3'))
-
-        self.t_buttonE4 = Button(pos=(175, 360), width=54, height=57,
-                                 background_normal='./Images/Talents/Ferocity/3.jpg')
-        self.t_buttonE4.bind(on_press=partial(self.change, 'tbe4'))
-
-        self.t_buttonE5 = Button(pos=(295, 360), width=54, height=57,
-                                 background_normal='./Images/Talents/Ferocity/4.jpg')
-        self.t_buttonE5.bind(on_press=partial(self.change, 'tbe5'))
-        
-        widget.add_widget(self.t_buttonE1)
-        widget.add_widget(self.t_buttonE2)
-        widget.add_widget(self.t_buttonE3)
-        widget.add_widget(self.t_buttonE4)
-        widget.add_widget(self.t_buttonE5)
-        '''
         self.add_widget(widget)
-    def change(self, name, *args):
+    def change(self, name, pos, *args):
         valor = None
-        if name == 'tbl0':
-            valor = 0
-        elif name == 'tbl1':
-            valor = 1
-        elif name == 'tbl2':
-            valor = 2
-        elif name == 'tbl3':
-            valor = 3
-        elif name == 'tbl4':
-            valor = 4
-        elif name == 'tbl5':
-            pass
-        elif name == 'tbl6':
-            pass
-        elif name == 'tbl7':
-            pass
-        elif name == 'tbl8':
-            pass
-        elif name == 'tbl9':
-            pass
-        elif name == 'tbl10':
-            pass
-        elif name == 'tbl11':
-            pass
-        elif name == 'tbl12':
-            pass
-        elif name == 'tbl13':
-            pass
-        elif name == 'tbl14':
+        if pos == 'left':
+            if name == 'tbl0':
+                valor = 0
+            elif name == 'tbl1':
+                valor = 1
+            elif name == 'tbl2':
+                valor = 2
+            elif name == 'tbl3':
+                valor = 3
+            elif name == 'tbl4':
+                valor = 4
+            elif name == 'tbl5':
+                valor = 5
+            elif name == 'tbl6':
+                valor = 6
+            elif name == 'tbl7':
+                valor = 7
+            elif name == 'tbl8':
+                valor = 8
+            elif name == 'tbl9':
+                valor = 9
+            elif name == 'tbl10':
+                valor = 10
+            elif name == 'tbl11':
+                valor = 11
+            elif name == 'tbl12':
+                valor = 12
+            elif name == 'tbl13':
+                valor = 13
+            elif name == 'tbl14':
+                valor = 14
+            else:
+                pass
+        elif pos == 'middle':
             pass
         else:
             pass
@@ -158,6 +134,52 @@ class Talent_Screen(Screen):
                             else:
                                 self.talent_left_buttons[valor].background_normal = './Images/Talents/Ferocity/%i.jpg'%(self.button_status[valor]+19)
                                 self.talent_left_buttons[valor].background_down = './Images/Talents/Ferocity/%i.jpg'%(self.button_status[valor]+19)
+            elif valor == 5 or valor == 6:
+                if (self.button_status[5] + self.button_status[6]) == 5:
+                    pass
+                else:
+                    if (self.button_status[2] + self.button_status[3] + self.button_status[4]) == 1:
+                        if self.button_status[valor] == 5:
+                            self.button_status[valor] == 0
+                            self.talent_left_buttons[valor].background_normal = './Images/Talents/Ferocity/%i.jpg'%valor
+                            self.talent_left_buttons[valor].background_down = './Images/Talents/Ferocity/%i.jpg'%valor
+                        else:
+                            self.button_status[valor] += 1
+                            if self.button_status[valor] == 0:
+                                self.talent_left_buttons[valor].background_normal = './Images/Talents/Ferocity/%i.jpg'%valor
+                                self.talent_left_buttons[valor].background_down = './Images/Talents/Ferocity/%i.jpg'%valor
+                            else:
+                                if valor == 5:
+                                    self.talent_left_buttons[valor].background_normal = './Images/Talents/Ferocity/%i.jpg'%(self.button_status[valor]+27)
+                                    self.talent_left_buttons[valor].background_down = './Images/Talents/Ferocity/%i.jpg'%(self.button_status[valor]+27)
+                                else:
+                                    self.talent_left_buttons[valor].background_normal = './Images/Talents/Ferocity/%i.jpg'%(self.button_status[valor]+32)
+                                    self.talent_left_buttons[valor].background_down = './Images/Talents/Ferocity/%i.jpg'%(self.button_status[valor]+32)
+                    else:
+                        pass
+            elif valor == 10 or valor == 11:
+                if (self.button_status[10] + self.button_status[11]) == 5:
+                    pass
+                else:
+                    if (self.button_status[7] + self.button_status[8] + self.button_status[9]) == 1:
+                        if self.button_status[valor] == 5:
+                            self.button_status[valor] == 0
+                            self.talent_left_buttons[valor].background_normal = './Images/Talents/Ferocity/%i.jpg'%valor
+                            self.talent_left_buttons[valor].background_down = './Images/Talents/Ferocity/%i.jpg'%valor
+                        else:
+                            self.button_status[valor] += 1
+                            if self.button_status[valor] == 0:
+                                self.talent_left_buttons[valor].background_normal = './Images/Talents/Ferocity/%i.jpg'%valor
+                                self.talent_left_buttons[valor].background_down = './Images/Talents/Ferocity/%i.jpg'%valor
+                            else:
+                                if valor == 10:
+                                    self.talent_left_buttons[valor].background_normal = './Images/Talents/Ferocity/%i.jpg'%(self.button_status[valor]+40)
+                                    self.talent_left_buttons[valor].background_down = './Images/Talents/Ferocity/%i.jpg'%(self.button_status[valor]+40)
+                                else:
+                                    self.talent_left_buttons[valor].background_normal = './Images/Talents/Ferocity/%i.jpg'%(self.button_status[valor]+45)
+                                    self.talent_left_buttons[valor].background_down = './Images/Talents/Ferocity/%i.jpg'%(self.button_status[valor]+45
+                                                                                                                          )
+                
         else:
             if valor == 2 or valor == 3 or valor == 4:
                 if (self.button_status[0] + self.button_status[1]) == 5:
@@ -193,91 +215,77 @@ class Talent_Screen(Screen):
                         self.talent_left_buttons[4].background_down = './Images/Talents/Ferocity/27.jpg'
                 else:
                     pass
+            elif valor == 7 or valor == 8 or valor == 9:
+                if (self.button_status[5] + self.button_status[6]) == 5:
+                    if valor == 7:
+                        self.button_status[7] = 1
+                        self.button_status[8] = 0
+                        self.button_status[9] = 0
+                        self.talent_left_buttons[7].background_normal = './Images/Talents/Ferocity/38.jpg'
+                        self.talent_left_buttons[7].background_down = './Images/Talents/Ferocity/38.jpg'
+                        self.talent_left_buttons[8].background_normal = './Images/Talents/Ferocity/8.jpg'
+                        self.talent_left_buttons[8].background_down = './Images/Talents/Ferocity/8.jpg'
+                        self.talent_left_buttons[9].background_normal = './Images/Talents/Ferocity/9.jpg'
+                        self.talent_left_buttons[9].background_down = './Images/Talents/Ferocity/9.jpg'
+                    elif valor == 8:
+                        self.button_status[8] = 1
+                        self.button_status[7] = 0
+                        self.button_status[9] = 0
+                        self.talent_left_buttons[7].background_normal = './Images/Talents/Ferocity/7.jpg'
+                        self.talent_left_buttons[7].background_down = './Images/Talents/Ferocity/7.jpg'
+                        self.talent_left_buttons[8].background_normal = './Images/Talents/Ferocity/39.jpg'
+                        self.talent_left_buttons[8].background_down = './Images/Talents/Ferocity/39.jpg'
+                        self.talent_left_buttons[9].background_normal = './Images/Talents/Ferocity/9.jpg'
+                        self.talent_left_buttons[9].background_down = './Images/Talents/Ferocity/9.jpg'
+                    else:
+                        self.button_status[9] = 1
+                        self.button_status[7] = 0
+                        self.button_status[8] = 0
+                        self.talent_left_buttons[7].background_normal = './Images/Talents/Ferocity/7.jpg'
+                        self.talent_left_buttons[7].background_down = './Images/Talents/Ferocity/7.jpg'
+                        self.talent_left_buttons[8].background_normal = './Images/Talents/Ferocity/8.jpg'
+                        self.talent_left_buttons[8].background_down = './Images/Talents/Ferocity/8.jpg'
+                        self.talent_left_buttons[9].background_normal = './Images/Talents/Ferocity/40.jpg'
+                        self.talent_left_buttons[9].background_down = './Images/Talents/Ferocity/40.jpg'
+                else:
+                    pass
+            elif valor == 12 or valor == 13 or valor == 14:
+                if (self.button_status[10] + self.button_status[11]) == 5:
+                    if valor == 12:
+                        self.button_status[12] = 1
+                        self.button_status[13] = 0
+                        self.button_status[14] = 0
+                        self.talent_left_buttons[12].background_normal = './Images/Talents/Ferocity/51.jpg'
+                        self.talent_left_buttons[12].background_down = './Images/Talents/Ferocity/51.jpg'
+                        self.talent_left_buttons[13].background_normal = './Images/Talents/Ferocity/13.jpg'
+                        self.talent_left_buttons[13].background_down = './Images/Talents/Ferocity/13.jpg'
+                        self.talent_left_buttons[14].background_normal = './Images/Talents/Ferocity/14.jpg'
+                        self.talent_left_buttons[14].background_down = './Images/Talents/Ferocity/14.jpg'
+                    elif valor == 13:
+                        self.button_status[13] = 1
+                        self.button_status[12] = 0
+                        self.button_status[14] = 0
+                        self.talent_left_buttons[12].background_normal = './Images/Talents/Ferocity/12.jpg'
+                        self.talent_left_buttons[12].background_down = './Images/Talents/Ferocity/12.jpg'
+                        self.talent_left_buttons[13].background_normal = './Images/Talents/Ferocity/52.jpg'
+                        self.talent_left_buttons[13].background_down = './Images/Talents/Ferocity/52.jpg'
+                        self.talent_left_buttons[14].background_normal = './Images/Talents/Ferocity/14.jpg'
+                        self.talent_left_buttons[14].background_down = './Images/Talents/Ferocity/14.jpg'
+                    else:
+                        self.button_status[14] = 1
+                        self.button_status[12] = 0
+                        self.button_status[13] = 0
+                        self.talent_left_buttons[12].background_normal = './Images/Talents/Ferocity/12.jpg'
+                        self.talent_left_buttons[12].background_down = './Images/Talents/Ferocity/12.jpg'
+                        self.talent_left_buttons[13].background_normal = './Images/Talents/Ferocity/13.jpg'
+                        self.talent_left_buttons[13].background_down = './Images/Talents/Ferocity/13.jpg'
+                        self.talent_left_buttons[14].background_normal = './Images/Talents/Ferocity/53.jpg'
+                        self.talent_left_buttons[14].background_down = './Images/Talents/Ferocity/53
+                        .jpg'
+                else:
+                    pass
                     
                     
-        '''
-        if name == 'tbe1':
-            if (self.button_status[0] + self.button_status[1]) == 5:
-                pass
-            else:
-                if self.button_status[0] == 5:
-                    self.button_status[0] = 0
-                    self.t_buttonE1.background_normal = './Images/Talents/Ferocity/0.jpg'
-                    self.t_buttonE1.background_down = './Images/Talents/Ferocity/0.jpg'
-                else:
-                    self.button_status[0] += 1
-                    if self.button_status[0] == 0:
-                        self.t_buttonE1.background_normal = './Images/Talents/Ferocity/0.jpg'
-                        self.t_buttonE1.background_down = './Images/Talents/Ferocity/0.jpg'
-                    else:
-                        self.t_buttonE1.background_normal = './Images/Talents/Ferocity/%i.jpg'%(self.button_status[0]+14)
-                        self.t_buttonE1.background_down = './Images/Talents/Ferocity/%i.jpg'%(self.button_status[0]+14)
-                        
-        elif name == 'tbe2':
-            if (self.button_status[0] + self.button_status[1]) == 5:
-                pass
-            else:
-                if self.button_status[1] == 5:
-                    self.button_status[1] = 0
-                    self.t_buttonE2.background_normal = './Images/Talents/Ferocity/0.jpg'
-                    self.t_buttonE2.background_down = './Images/Talents/Ferocity/0.jpg'
-                else:
-                    self.button_status[1] += 1
-                    if self.button_status[1] == 0:
-                        self.t_buttonE2.background_normal = './Images/Talents/Ferocity/0.jpg'
-                        self.t_buttonE2.background_down = './Images/Talents/Ferocity/0.jpg'
-                        
-                    else:
-                        self.t_buttonE2.background_normal = './Images/Talents/Ferocity/%i.jpg'%(self.button_status[1]+19)
-                        self.t_buttonE2.background_down = './Images/Talents/Ferocity/%i.jpg'%(self.button_status[1]+19)
-        elif name == 'tbe3':
-            if (self.button_status[0] + self.button_status[1]) == 5:
-                if self.button_status[2] == 0:
-                    self.button_status[2] += 1
-                else:
-                    self.button_status[2] = 0
-                if self.button_status[2] == 1:
-                    self.t_buttonE3.background_normal = './Images/Talents/Ferocity/25.jpg'
-                    self.t_buttonE3.background_down = './Images/Talents/Ferocity/25.jpg'
-                else:
-                    self.t_buttonE3.background_normal = './Images/Talents/Ferocity/2.jpg'
-                    self.t_buttonE3.background_down = './Images/Talents/Ferocity/2.jpg'
-            else:
-                pass
-        elif name == 'tbe4':
-            if (self.button_status[0] + self.button_status[1]) == 5:
-                if self.button_status[3] == 0:
-                    self.button_status[3] += 1
-                else:
-                    self.button_status[3] = 0
-                if self.button_status[3] == 1:
-                    self.t_buttonE3.background_normal = './Images/Talents/Ferocity/26.jpg'
-                    self.t_buttonE3.background_down = './Images/Talents/Ferocity/26.jpg'
-                else:
-                    self.t_buttonE3.background_normal = './Images/Talents/Ferocity/3.jpg'
-                    self.t_buttonE3.background_down = './Images/Talents/Ferocity/3.jpg'
-            else:
-                pass
-        elif name == 'tbe5':
-            if (self.button_status[0] + self.button_status[1]) == 5:
-                if self.button_status[4] == 0:
-                    self.button_status[4] += 1
-                    self.button_status[2] = 0
-                    self.button_status[3] = 0
-                else:
-                    self.button_status[4] = 0
-                if self.button_status[4] == 1:
-                    self.t_buttonE3.background_normal = './Images/Talents/Ferocity/27.jpg'
-                    self.t_buttonE3.background_down = './Images/Talents/Ferocity/27.jpg'
-                else:
-                    self.t_buttonE3.background_normal = './Images/Talents/Ferocity/4.jpg'
-                    self.t_buttonE3.background_down = './Images/Talents/Ferocity/4.jpg'
-            else:
-                pass
-        
-        else:
-            pass
-        '''
 class x1_Screen(Screen):
     def __init__(self, top_image, nxc, **kwargs):
         self.next_screen = nxc
@@ -356,3 +364,5 @@ class Loluoo(App):
 
 if __name__ == '__main__':
     Loluoo().run()
+
+
